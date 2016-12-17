@@ -1,0 +1,12 @@
+<div class="box-shadow box-white about-page">
+  <div class="row">
+    <div class="col-md-7">
+      {{ website_data.about_text }}
+    </div>
+    <div class="col-md-5">
+      {% for photo in website_data.about_photos limit: 2 offset: 0 %}
+        <img src="{{ photo.image | attachment_url: 'public_big' }}" class="about-photo" />
+      {% endfor %}
+    </div>
+  </div>
+</div>

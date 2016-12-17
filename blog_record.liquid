@@ -1,0 +1,38 @@
+{% if record.cover %}
+  <div class="box-shadow box-white blog-record">
+    <h1>
+      {{record.title}}
+    </h1>
+  </div>
+  <div class="blog-image">
+    <div class="blog-image">
+      <div class="sticker">
+        <div class="day"> {{ record.created_at | date: "%d" }} </div>
+        <div class="month"> {{ record.created_at | date: "%B" }} </div>
+      </div>
+      <img src="{{ record.image | attachment_url: 'big' }}" alt="{{record.alt_text}}" />
+    </div>
+    {{ record.text}}
+
+    {% if website_data.disqus_code %}
+      {{website_data.disqus_code}}
+    {% endif %}
+
+  </div>
+{% else %}
+  <div class="blog-record without-cover-image">
+    <h2>
+      <a href="{{ record.slug | link_to: website_data.link_object }}"> {{record.title}} </a>
+    </h2>
+    <div class="blog-image">
+      <div class="sticker">
+        <div class="day"> {{ record.created_at | date: "%d" }} </div>
+        <div class="month"> {{ record.created_at | date: "%B" }} </div>
+      </div>
+    </div>
+    {{ record.text }}
+    {% if website_data.disqus_code %}
+      {{website_data.disqus_code}}
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,40 @@
+<div class="box-shadow box-white about-page">
+  <h1> Blog </h1>
+  <div class="blog-recrods">
+    {% for record in website_data.blog_record %}
+      {% if record.cover %}
+        <div class="blog-record">
+          <h2>
+            <a href="{{ recrod.slug | link_to: website_data.link_object }}">{{record.title}}</a>
+          </h2>
+          <div class="blog-image">
+            <div class="sticker">
+              <div class="day"> {{ record.created_at | date: "%d" }} </div>
+              <div class="month"> {{ record.created_at | date: "%B" }} </div>
+            </div>
+            <img src="{{ record.image | attachment_url: 'big' }}" alt="{{record.alt_text}}" />
+          </div>
+          {{ record.text | truncate: 300 }}
+          <br />
+          <a href="{{ record.slug | link_to: website_data.link_object }}"> Read more... </a>
+        </div>
+      {% else %}
+        <div class="blog-record without-cover-image">
+          <h2>
+            <a href="{{ record.slug | link_to: website_data.link_object }}"> {{record.title}} </a>
+          </h2>
+          <div class="blog-image">
+            <div class="sticker">
+              <div class="day"> {{ record.created_at | date: "%d" }} </div>
+              <div class="month"> {{ record.created_at | date: "%B" }} </div>
+            </div>
+          </div>
+          {{ record.text | truncate: 300 }}
+          <br />
+          <a href="{{ record.slug  | link_to: website_data.link_object }}"> Read more... </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <a href="{{ '/blog_next' | link_to: website_data.link_object }}" class="btn btn-default btn-book load-more"> Load more </a>
+</div>

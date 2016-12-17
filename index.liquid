@@ -1,0 +1,130 @@
+<!-- Main photo block -->
+<div class="main-photo box-shadow" style="background-image: url('{{website_data.header_image | attachment_url: 'template_2' }}');">
+  <div class="jumbotron"></div>
+</div>
+
+<!-- Insiders -->
+{% if website_data.membership_active and website_data.membership_placement == 'top' %}
+  <div class="insiders box-shadow"></div>
+{% endif %}
+
+<a id="room"></a>
+<div class="box-shadow box-white">
+  <div class="row">
+    <div class="col-md-8 about-info">
+      {{website_data.text_area}}
+    </div>
+    <div class="col-md-4 numbers-block hidden-xs">
+      {% for room in website_data.rooms %}
+        {% if room.visible == true and room.room_type.photos.size > 0 %}
+          <a href="{{ room.slug | link_to: website_data.link_object }}">
+            <div class="number">
+              <div class="image">
+                <img src="{{ room.room_type.photos.first.image | attachment_url: 'public' }}"/>
+              </div>
+              <div class="info">
+                <div class="text">
+                  <span>
+                    {{room.name}}
+                  </span>
+                  <br />
+                  <span class="btn btn-primary">View Room </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+      {% for room in website_data.custom_rooms %}
+        {% if room.visible and room.website_custom_room_photos.size > 0 %}
+          <a href="{{ room.slug | link_to: website_data.link_object }}">
+            <div class="image">
+              <img src="{{ room.website_custom_room_photos.first.image | attachment_url: 'public' }}" />
+            </div>
+            <div class="info">
+              <div class="text">
+                <span>
+                  {{room.title}}
+                </span>
+                <br />
+                {% unless room.button_text == nil or room.button_text == '' %}
+                  <span class="btn btn-primary">
+                    {{ room.button_text }}
+                  </span>
+                {% else %}
+                  <span class="btn btn-primary">View Room </span>
+                {% endunless %}
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="col-md-4 number-block visible-xs-block">
+      {% for room in website_data.rooms %}
+        {% if room.visible == true and room.room_type.photos.size > 0  %}
+          <div class="number">
+            <div class="image">
+              <img src="{{ room.room_type.photos.first.image | attachment_url: 'public' }}" />
+            </div>
+          </div>
+          <div class="info">
+            <div class="text">
+              <a href="{{ room.slug | link_to: website_data.link_object }}" class="btn btn-primary">
+                {{room.name}}
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% for room in website_data.custom_rooms %}
+        {% if room.visible == true and room.website_custom_room_photos.size > 0 %}
+          <div class="number custom">
+            <div class="image">
+              <img src="{{ room.website_custom_room_photos.first.image | attachment_url: 'public' }}" />
+            </div>
+            <div class="info">
+              <div class="text">
+                <a href="{{ room.slug | link_to: website_data.link_object }}" class="btn btn-primary">
+                  {{room.title}}
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="btn btn-primary btn-more-rooms visible-xs-block">Show more rooms</div>
+  </div>
+</div>
+
+<!-- Insiders -->
+{% if website_data.membership_active and website_data.membership_placement == 'middle' %}
+  <div class="insiders box-shadow"></div>
+{% endif %}
+
+<!-- Features -->
+
+<a id="features"></a>
+<div class="features box-white box-shadow">
+  <div class="feature-list">
+    <h2>
+      {{website_data.features_title}}
+    </h2>
+    {% for feature in website_data.features %}
+      <div class="feature">
+        <i class="fa fa-{{feature.icon}}"></i>
+        <strong>
+          {{feature.title}}
+        </strong>
+        <br />
+        {{feature.description}}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Insiders  -->
+{% if website_data.membership_active and website_data.membership_placement == 'bottom' %}
+  <div class="insiders box-shadow"></div>
+{% endif %}

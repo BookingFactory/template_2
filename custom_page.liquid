@@ -1,0 +1,18 @@
+{% if page.website_page_photos.size > 0 %}
+  <div class="box-shadow box-white about-page">
+    <div class="row">
+      <div class="col-md-7">
+        {{page.content}}
+      </div>
+      <div class="col-md-5">
+        {% for photo in page.website_page_photos %}
+          <img class="about-photo" src="{{ photo.image | attachment_url: 'public_big'}}" />
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="box-shadow box-white">
+    {{page.content}}
+  </div>
+{% endif %}

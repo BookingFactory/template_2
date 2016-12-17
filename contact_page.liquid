@@ -1,0 +1,89 @@
+<div class="map box-shadow box-white">
+  <div id="map-canvas"></div>
+  <script>
+    {% if website_data.map_center_lat and website_data.map_center_lng %}
+        var zoom = {{website_data.map_zoom_level}}
+        var lat = {{website_data.map_center_lat}}
+        var lng = {{website_data.map_center_lng}}
+        function initialize() {
+          var myOptions = {
+              zoom: zoom,
+              center: new google.maps.LatLng(lat, lng),
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              scrollwheel: false
+          }
+          map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+          var marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(lat, lng)
+          });
+        }
+        function loadScript() {
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+              '&callback=initialize&key=AIzaSyCxqPAlL6tmp-Wny3tC0e_byl-jOxzu_QA';
+          document.body.appendChild(script);
+        }
+    {% endif %}
+  </script>
+</div>
+
+<div class="box-white box-shadow contacts">
+  <div class="row">
+    <div class="col-md-6 left-block">
+      <h2>Get In Touch</h2>
+     <form id="contact-form" method="POST" action="/send_email">
+       <input type="hidden" name="part_a" value="{{website_data.rand_a}}" />
+       <input type="hidden" name="part_b" value="{{website_data.rand_b}}" />
+       <div class="half-input first">
+         <input class="half" name="name" placeholder="Name" type="text"></input>
+       </div>
+       <div class="half-input">
+         <input class="half" name="email" placeholder="Email Address" type="email"></input>
+       </div>
+       <textarea name="message" placeholder="Message"></textarea>
+       <div class="control text-right">
+         {{website_data.rand_a}} + {{website_data.rand_b}} =
+         <input class="small" name="answer" placeholder="..." type="text"></input>
+         <button class="btn btn-primary">Submit</button>
+       </div>
+     </form>
+    </div>
+    <div class="col-md-6 right-block">
+      <h2>
+        {{website_data.contact_area_title}}
+      </h2>
+      <p>
+        {{website_data.contact_description_text}}
+      </p>
+      <dl class="dl-horizontal">
+        <dt>Phone: </dt>
+        <dd>
+          <a class="href-action" href="tel:{{website_data.phone_number}}"> {{website_data.phone_number}} </a>
+        </dd>
+        <dt>Email:</dt>
+        <dd>
+            <a class="href-action" href="mailto:{{website_data.email_address}}"> {{website_data.email_address}} </a>
+        </dd>
+        <dt> Booking </dt>
+        <dd>
+          {% if website_data.booking_link == nil or website_data.booking_link == '' %}
+            <a href="#" class="btn btn-success btn-sm booking-form-link"> {{website_data.booking_button_text}} </a>
+          {% else %}
+            <a href="{{website_data.booking_link}}" class="btn btn-success btn-sm"> {{website_data.booking_button_text}} </a>
+          {% endif %}
+        </dd>
+        <dt>Trip Advisor:</dt>
+        <dd>
+          <a class="btn btn-success btn-sm" href="{{website_data.tripadvisor_listing_link}}">View Our Profile</a>
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+          {{website_data.address}}
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
