@@ -1,18 +1,18 @@
 <div class="box-shadow box-white about-page">
   <h1> Blog </h1>
-  <div class="blog-recrods">
-    {% for record in website_data.blog_record %}
+  <div class="blog-records">
+    {% for record in website_data.blog_records %}
       {% if record.cover %}
         <div class="blog-record">
           <h2>
-            <a href="{{ recrod.slug | link_to: website_data.link_object }}">{{record.title}}</a>
+            <a href="{{ '/blog/' | append: record.slug | link_to: website_data.link_object }}">{{record.title}}</a>
           </h2>
           <div class="blog-image">
             <div class="sticker">
               <div class="day"> {{ record.created_at | date: "%d" }} </div>
               <div class="month"> {{ record.created_at | date: "%B" }} </div>
             </div>
-            <img src="{{ record.image | attachment_url: 'big' }}" alt="{{record.alt_text}}" />
+            <img src="{{ record.image | attachment_url: 'big' }}" alt="{{record.all_text}}" />
           </div>
           {{ record.text | truncate: 300 }}
           <br />
@@ -21,7 +21,7 @@
       {% else %}
         <div class="blog-record without-cover-image">
           <h2>
-            <a href="{{ record.slug | link_to: website_data.link_object }}"> {{record.title}} </a>
+            <a href="{{ '/blog/' | append: record.slug | link_to: website_data.link_object }}"> {{record.title}} </a>
           </h2>
           <div class="blog-image">
             <div class="sticker">
@@ -31,7 +31,7 @@
           </div>
           {{ record.text | truncate: 300 }}
           <br />
-          <a href="{{ record.slug  | link_to: website_data.link_object }}"> Read more... </a>
+          <a href="{{ '/blog/' | append: record.slug  | link_to: website_data.link_object }}"> Read more... </a>
         </div>
       {% endif %}
     {% endfor %}
