@@ -2,12 +2,9 @@
 <div class="main-photo box-shadow" style="background-image: url('{{website_data.header_image | attachment_url: 'template_2' }}');">
   <div class="jumbotron"></div>
 </div>
-
-<!-- Insiders -->
 {% if website_data.membership_active and website_data.membership_placement == 'top' %}
   <div class="insiders box-shadow"></div>
 {% endif %}
-
 <a id="room"></a>
 <div class="box-shadow box-white">
   <div class="row">
