@@ -4,20 +4,18 @@
       {{record.title}}
     </h1>
     <div class="blog-image">
-      <div class="blog-image">
-        <div class="sticker">
-          <div class="day"> {{ record.created_at | date: "%d" }} </div>
-          <div class="month"> {{ record.created_at | date: "%B" }} </div>
-        </div>
-        <img src="{{ record.image | attachment_url: 'big' }}" alt="{{record.all_text}}" />
+      <div class="sticker">
+        <div class="day"> {{ record.created_at | date: "%d" }} </div>
+        <div class="month"> {{ record.created_at | date: "%B" }} </div>
       </div>
-      {{ record.text}}
-
-      {% if website_data.disqus_code %}
-        {{website_data.disqus_code}}
-      {% endif %}
-
+      <img src="{{ record.image | attachment_url: 'big' }}" alt="{{record.all_text}}" />
     </div>
+    {{ record.text}}
+
+    {% if website_data.disqus_code %}
+      {{website_data.disqus_code}}
+    {% endif %}
+
   </div>
 {% else %}
   <div class="box-shadow box-white blog-record without-cover-image">
