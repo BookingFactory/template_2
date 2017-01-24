@@ -51,7 +51,6 @@
               {% else %}
                 <li>
               {% endif %}
-                </li>
                 <a href="{{photo.image | attachment_url: 'public_big'}}">
                   <img src="{{photo.image | attachment_url: 'public_small'}}" class="hidden-xs" />
                   <img src="{{photo.image | attachment_url: 'public_big' }}" class="hidden-sm hidden-lg hidden-md" />
