@@ -16,7 +16,7 @@
           </div>
           {{ record.text | truncate: 300 }}
           <br />
-          <a href="{{ record.slug | link_to: website_data.link_object }}"> Read more... </a>
+          <a href="{{ '/blog/' | append: record.slug  | link_to: website_data.link_object }}"> Read more... </a>
         </div>
       {% else %}
         <div class="blog-record without-cover-image">
