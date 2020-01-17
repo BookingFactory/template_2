@@ -85,8 +85,8 @@
       <link rel="stylesheet" href="{{ '/css/template.css' | file_url: website_data.template }}" />
     </noscript>
 
+    {% include 'mobile_navigation'%}
     <main id="panel">
-      {% include 'mobile_navigation'%}
       {% include 'header' %}
       <div class="content-zone">
         {% include 'aside' %}
