@@ -180,7 +180,7 @@
                   </li>
                 {% else %}
                   <li>
-                    <a href="{{ 'link.value' | link_to: website_data.link_object }}">{{link.title}}</a>
+                    <a href="{{ link.value | link_to: website_data.link_object }}">{{link.title}}</a>
                   </li>
                 {% endif %}
               {% endfor %}
